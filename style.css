@@ -1,0 +1,173 @@
+body{
+
+    color: #000000;
+
+
+}
+.big-container{
+    margin: auto;
+    /* display: flex; */
+    text-align: left;
+    width: 810px;
+    height: 600px;
+}
+
+h1{
+    color: black;   
+    font-size: 36px;
+    line-height: 42px;
+}
+header{
+    background: #F5F5F6;
+    width: 1152px;
+    height: 50px;
+}
+.line{
+    display: flex;
+    flex-direction: row;
+    color:#000000;
+    margin-left: 80px;
+}
+.line div{
+    margin-right: 15px;
+    color:#959BA4;
+    line-height: 49px;
+
+}
+.line .bank{
+    color:#000000
+}
+.all{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+.rectangle{
+    width: 58px;
+    height: 33px;
+    left: 992px;
+    top: 9px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    display: flex;
+    margin-top: 8px;
+    margin-left: 100px;
+
+}
+.voiti{
+    margin: 10px;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.06em;
+    justify-content: center;
+    color:#000000;
+    
+
+}
+.bank {
+    color:#000000
+}
+.small-container p{
+    color:  #9F9F9F;
+    
+}
+.medium-container{
+    position: relative;
+    
+    
+}
+#one, #two {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 259px;
+    height: 30px;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+#one div,
+#two div{
+    width: 100%;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color:#C6C6C6;
+    border : 1px solid #E5E5E5;
+    cursor: pointer;
+    
+}
+.table {
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 259px;
+    height: 102px;
+    position: relative;
+}
+
+.selector{
+    color:#C6C6C6;
+    border : 1px solid #E5E5E5;
+    cursor: pointer;;
+}
+.small-container2{
+    margin-left: 469px;
+    margin-top: -182px;
+}
+
+.small-container2 p {
+    color:#9F9F9F;
+
+}
+.img1 img {
+    position: absolute;
+    left: 345px;
+    top: 88px;
+}
+.img2 img {
+    position: absolute;
+    left: 349px;
+    top: 65px
+}
+#one .one{
+    background-color: #833AE0;
+
+
+}
+#two .two{
+    background-color: #833AE0;
+
+} 
+
+option {
+   background-color: #FFFFFF!important;
+}
+.buttonValue{
+    position: absolute;
+    width: 119px;
+    height: 28px;
+    top: 70px;
+    left: 10px;
+    color: #C6C6C6;
+}
+.buttonValue2{
+    position: absolute;
+    width: 119px;
+    height: 28px;
+    top: 70px;
+    left: 10px;
+    color: #C6C6C6;
+}
+input {
+    height: 42px;
+    font-size: 36px;
+    width: 200px;
+    border: none;
+}
