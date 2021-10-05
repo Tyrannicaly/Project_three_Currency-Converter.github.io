@@ -1,128 +1,53 @@
-// (['one', 'two']).forEach(id => {
-//     const buttons = document.querySelectorAll(`#${id} div`);
-//     const select = document.querySelector(`#${id} select`);
-//     select.addEventListener("change", ()=> {
-//         select.style.backgroundColor = "#833AE0";
-//         buttons.forEach(btn=>{
-//             btn.style.backgroundColor ="white"
-//             btn.style.color = "";
-//             // a = select[i].value
-//             // console.log(a)
-//         })
-        
-        
-//     })
-//     buttons.forEach(button => {
-//         button.addEventListener("click", () => {
-//             buttons.forEach(btn =>{
-//                 if(btn !== button){
-//                     btn.style.backgroundColor = "white";
-//                     btn.style.color = "";
-//                 }
-//             })
-            
-//             if(button.style.backgroundColor === "rgb(131, 58, 224)"){
-//                 button.style.backgroundColor = "white";
-//                 button.style.color = "";
-//             }else {
-//                 button.style.backgroundColor = "#833AE0";
-//                 button.style.color = "#FFFFFF"
-//                 select.style.backgroundColor ="#FFFFFF"
-//             }
-            
-//         })
-        
-//     });
-// })
-
-
-
-// async function getRate(){
-//     let response = await fetch(`https://api.exchangerate.host/latest`)
-//     let data = await response.json();
-//     console.log(data)
-// }
-
-
-// getRate()
-
 const blockOne = document.querySelectorAll('#one div.tab')
 const blockTwo = document.querySelectorAll('#two div.tab')
 let select =document.querySelector(".selector.tab")
 let select2 =document.querySelector(".selector.tab2") // tak obrashautsya k selectory 
 let str = "RUB"
 let str2 = "USD"
-// let obj = {
-//     str1: "",
-//     str2: ""
-// }
-
-// console.log(blockOne)
-// console.log(blockTwo)
-
-// function changeTab(block, obj, propName){
-//     block.forEach(element => {
-//         element.addEventListener('click', (event) => {
-//             block.forEach(elem => {
-//                 // console.log(elem)
-//                 elem.style.background = 'white'
-//             })
-//             event.target.style.background = 'red'
-//             obj[propName] = event.target.innerText
-//             console.log(obj.str1)
-//         })
-//     })
-// }
-// changeTab(blockOne, obj, "str1")
-// changeTab(blockTwo, obj, "str2")
-// console.log(obj.str1)
-
 
 blockOne.forEach(element => {
-        element.addEventListener('click', (event) => {
-            blockOne.forEach(elem => {
-                // console.log(elem)
-                elem.style.background = 'white'
-            })
-            event.target.style.background = "rgb(131, 58, 224)"
-            str = event.target.innerText
-            select.style.background = "white"
-            getRate()
-        })
-    })
+    element.addEventListener('click', (event) => {
+        const clearBtn = document.querySelector('#one .action');
+        clearBtn.classList.remove('action');
+    
+        event.target.classList.add('action');
+        str = event.target.innerText;
+        
+        getRate();
+    });
+});
 
 blockTwo.forEach(element => {
     element.addEventListener('click', (event) => {
-        blockTwo.forEach(elem => {
-            // console.log(elem)
-            elem.style.background = "white"
-        })
-        event.target.style.background = 'rgb(131, 58, 224)'
-        str2 = event.target.innerText
-        select2.style.background = "white"
-        getRate()
+        const clearBtn = document.querySelector('#two .action');
+        clearBtn.classList.remove('action');
+        
+        event.target.classList.add('action');
+        str2 = event.target.innerText;
+        
+        getRate();
     })
 })
 select2.addEventListener('change', (event) => {
-    event.currentTarget.style.background = 'rgb(131, 58, 224)'
-    str2 = event.currentTarget.value;
-    blockTwo.forEach(element =>{
-        element.style.background = "white"
-    })
-    getRate() 
-})
-select.addEventListener('change',()=>{
-    select.style.background = 'rgb(131, 58, 224)'
-    str = select.value
-    blockOne.forEach(element =>{
-        element.style.background = "white"
-    })
-    getRate()
-})
+    const clearBtn = document.querySelector('#two .action');
+    console.log(clearBtn)
+    clearBtn.classList.remove('action');
 
+    str2 = select2.value;
+    select2.classList.add('action');
 
+    getRate();
+});
 
+select.addEventListener('change',() => {
+    const clearBtn = document.querySelector('#one .action');
+    clearBtn.classList.remove('action');
+    
+    str = select.value;
+    select.classList.add('action');
 
+    getRate();
+});
 
 
 let buttonValue = document.querySelector(".buttonValue")
@@ -134,38 +59,68 @@ async function getRate() {
     let data = await response.json();
 
     console.log(data.rates[str2])
-    buttonValue2.innerText= `1 ${str2}=${data.rates[str2]}`
-    buttonValue.innerText = `1 ${str}=${1 / Number(data.rates[str2])}`
+    buttonValue2.innerText= `1 ${str2}=${(data.rates[str2].toFixed(4))}`
+    let reversedRate=1 / Number(data.rates[str2]);
+    buttonValue.innerText = `1 ${str}=${reversedRate.toFixed(4)}`
     let a = moneyValue * data.rates[str2]
     input2.value = a
     
 }
 const input = document.querySelector(".input")
 const input2 = document.querySelector(".input2")
-let button6 = document.querySelector("gdcm")
+let button6 = document.querySelector(".buttonImg")
 let amount = 1
 let moneyValue = 1
 let moneyRes = 1
-async function getRes(){
-    let response = await fetch(`https://api.exchangerate.host/latest?base=${str}&symbols=${str2}`)
-    let data = await response.json()
-}
 
 input.addEventListener("keyup",async (event)=>{
-    console.log(111)
     moneyValue = event.currentTarget.value
-
     
-        let response = await fetch(`https://api.exchangerate.host/latest?base=${str}&symbols=${str2}&amount=${moneyValue}`)
-        let data = await response.json();
-        console.log(moneyValue)
-        console.log(data.rates[str2])
-        let a = data.rates[str2]
-        input2.value = a
-        
-    
+    const response = await fetch(`https://api.exchangerate.host/latest?base=${str}&symbols=${str2}&amount=${moneyValue}`)
+    const data = await response.json();
+    const a = data.rates[str2];
+    input2.value = a;
 })
-// button6.addEventListener("click",()=>{
-    
 
-getRate()
+button6.addEventListener("click",()=>{ 
+    const inputValue = input.value;
+    const input2Value = input2.value;
+  
+    const actionOne = document.querySelector('#one .action');
+    const oneBlockValue = actionOne.value ? actionOne.value : actionOne.innerHTML;
+    actionOne.classList.remove("action");
+
+    const actionTwo = document.querySelector('#two .action');
+    const twoBlockValue = actionTwo.value ? actionTwo.value : actionTwo.innerHTML;
+    actionTwo.classList.remove("action"); 
+
+    blockOne.forEach(btn => {
+        if(btn.innerHTML === twoBlockValue) {
+            btn.classList.add('action');
+            
+        }
+    });
+    blockTwo.forEach(btn => {
+        if (btn.innerHTML === oneBlockValue) {
+            btn.classList.add('action');
+        }
+    });
+
+    if (!document.querySelector('#one .action')) {
+        select.value = twoBlockValue;
+        select.classList.add('action');
+    }
+
+    if (!document.querySelector('#two .action')) {
+        select2.value = oneBlockValue;
+        select2.classList.add('action');
+    }
+      
+    str = twoBlockValue
+    str2 = oneBlockValue
+    getRate()
+});
+Math.floor
+
+getRate();
+typeof(classList)
