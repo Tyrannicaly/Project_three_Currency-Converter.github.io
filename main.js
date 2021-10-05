@@ -1,7 +1,7 @@
 const blockOne = document.querySelectorAll('#one div.tab')
 const blockTwo = document.querySelectorAll('#two div.tab')
-let select =document.querySelector(".selector.tab")
-let select2 =document.querySelector(".selector.tab2") // tak obrashautsya k selectory 
+let select = document.querySelector(".selector.tab")
+let select2 = document.querySelector(".selector.tab2") // tak obrashautsya k selectory 
 let str = "RUB"
 let str2 = "USD"
 
@@ -57,13 +57,14 @@ async function getRate() {
     // console.log(str, str2)
     let response = await fetch(`https://api.exchangerate.host/latest?base=${str}&symbols=${str2}`)
     let data = await response.json();
-
+    
     console.log(data.rates[str2])
     buttonValue2.innerText= `1 ${str2}=${(data.rates[str2].toFixed(4))}`
     let reversedRate=1 / Number(data.rates[str2]);
     buttonValue.innerText = `1 ${str}=${reversedRate.toFixed(4)}`
     let a = moneyValue * data.rates[str2]
     input2.value = a
+    //Math.floor
     
 }
 const input = document.querySelector(".input")
@@ -120,7 +121,6 @@ button6.addEventListener("click",()=>{
     str2 = oneBlockValue
     getRate()
 });
-Math.floor
 
 getRate();
 typeof(classList)
